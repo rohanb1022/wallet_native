@@ -13,10 +13,14 @@ app.use(express.json());
 dotenv.config();
 
 if(process.env.NODE_ENV == "production") job.start();
- 
+
+app.get("/api/health" , (req , res) => {
+    res.status(200).json({status : "ok"})
+})
+
 app.get("/" , (req , res) => {
     res.send("app is working")
-})
+})  
 
 app.use("/api/transactions" , transactionRouter)
 app.use("/api/summary" , summaryRouter)
