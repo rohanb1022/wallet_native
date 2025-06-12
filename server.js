@@ -4,6 +4,7 @@ import { initDB } from "./config/db.js";
 import transactionRouter from "./routes/user.routes.js"
 import summaryRouter from "./routes/summary.route.js"
 import ratelimiter from "./middlewear/rateLimiter.js";
+import job from "./config/cron.js";
 const app = express();
 
 app.use(ratelimiter);
@@ -11,6 +12,8 @@ app.use(express.json());
 
 dotenv.config();
 
+if(process.env.NODE_ENV == "production") job.start();
+ 
 app.get("/" , (req , res) => {
     res.send("app is working")
 })
