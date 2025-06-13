@@ -6,11 +6,11 @@ import summaryRouter from "./routes/summary.route.js"
 import ratelimiter from "./middlewear/rateLimiter.js";
 import job from "./config/cron.js";
 
-app.use(express.json());
-app.use(ratelimiter);
 
 const app = express();
 
+app.use(express.json());
+app.use(ratelimiter);
 
 dotenv.config();
 
