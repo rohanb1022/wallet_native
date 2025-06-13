@@ -1,6 +1,6 @@
 import express from "express"
 import { addTransaction , deleteTransation, getAllTransaction } from "../controller/user.controller.js"
-const router = express();
+const router = express.Router();
 
 router.post("/addTransaction" , addTransaction)
 router.get("/getAllTransaction/:userId" , getAllTransaction)

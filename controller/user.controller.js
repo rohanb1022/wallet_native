@@ -2,9 +2,9 @@ import { sql } from "../config/db.js";
 
 export const addTransaction = async (req, res) => {
     try {
-        
+        console.log("Request body:", req.body);
         const {title , amount ,category , user_id } = req.body;
-        if(!title || !category || !user_id || amount == 'undefined'){
+        if(!title || !category || !user_id || amount === undefined){
             return res.status(400).json({message:"pura information dal bhai"})
         }
 
@@ -13,7 +13,7 @@ export const addTransaction = async (req, res) => {
         VALUES (${user_id},${title},${amount},${category})
         RETURNING *
         `
-        return res.status(201).json({message : "done hogaya bhai yakeen karrrr hogaya!!!"})
+        return res.status(201).json(transaction[0])
     } catch (error) {
         console.log(error);
         return res.status(500).json({message:"Internal Server error"})
